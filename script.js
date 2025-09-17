@@ -14,6 +14,10 @@ const languageToggle = document.querySelector("#languageToggle");
 const languageMenu = document.querySelector("#languageMenu");
 const countryToggle = document.querySelector("#countryToggle");
 const countryMenu = document.querySelector("#countryMenu");
+const mobileLanguageToggle = document.querySelector("#mobileLanguageToggle");
+const mobileLanguageMenu = document.querySelector("#mobileLanguageMenu");
+const mobileCountryToggle = document.querySelector("#mobileCountryToggle");
+const mobileCountryMenu = document.querySelector("#mobileCountryMenu");
 const menuToggle = document.querySelector("#menuToggle");
 const mobileMenu = document.querySelector("#mobileMenu");
 const mobileStocks = document.querySelector("#mobileStocks");
@@ -22,7 +26,10 @@ const mobilePolitics = document.querySelector("#mobilePolitics");
 const mobileTechnology = document.querySelector("#mobileTechnology");
 
 // Показ новин при завантаженні сторінки
-window.addEventListener("load", () => fetchNews(currentQuery, currentLang, currentCountry));
+window.addEventListener("load", () => {
+  console.log("Сторінка завантажена, виклик fetchNews із параметрами:", { currentQuery, currentLang, currentCountry });
+  fetchNews(currentQuery, currentLang, currentCountry);
+});
 
 // Обробники для десктоп меню
 if (stocks) stocks.addEventListener("click", () => {
@@ -91,10 +98,12 @@ document.addEventListener("click", (e) => {
   if (!e.target.closest(".dropdown")) {
     if (languageMenu) languageMenu.classList.add("hidden");
     if (countryMenu) countryMenu.classList.add("hidden");
+    if (mobileLanguageMenu) mobileLanguageMenu.classList.add("hidden");
+    if (mobileCountryMenu) mobileCountryMenu.classList.add("hidden");
   }
 });
 
-// Обробники для випадаючих меню
+// Обробники для десктопних випадаючих меню
 if (languageToggle) {
   languageToggle.addEventListener("click", () => toggleDropdown(languageMenu));
 }
@@ -102,27 +111,65 @@ if (countryToggle) {
   countryToggle.addEventListener("click", () => toggleDropdown(countryMenu));
 }
 
-// Вибір мови
+// Обробники для мобільних випадаючих меню
+if (mobileLanguageToggle) {
+  mobileLanguageToggle.addEventListener("click", () => toggleDropdown(mobileLanguageMenu));
+}
+if (mobileCountryToggle) {
+  mobileCountryToggle.addEventListener("click", () => toggleDropdown(mobileCountryMenu));
+}
+
+// Вибір мови (десктоп)
 if (languageMenu) {
   languageMenu.querySelectorAll(".dropdown-item").forEach((item) => {
     item.addEventListener("click", (e) => {
       const value = e.target.dataset.value;
       currentLang = value;
       languageToggle.textContent = e.target.textContent;
+      mobileLanguageToggle.textContent = e.target.textContent;
       languageMenu.classList.add("hidden");
       fetchNews(currentQuery, currentLang, currentCountry);
     });
   });
 }
 
-// Вибір країни
+// Вибір мови (мобільне)
+if (mobileLanguageMenu) {
+  mobileLanguageMenu.querySelectorAll(".dropdown-item").forEach((item) => {
+    item.addEventListener("click", (e) => {
+      const value = e.target.dataset.value;
+      currentLang = value;
+      languageToggle.textContent = e.target.textContent;
+      mobileLanguageToggle.textContent = e.target.textContent;
+      mobileLanguageMenu.classList.add("hidden");
+      fetchNews(currentQuery, currentLang, currentCountry);
+    });
+  });
+}
+
+// Вибір країни (десктоп)
 if (countryMenu) {
   countryMenu.querySelectorAll(".dropdown-item").forEach((item) => {
     item.addEventListener("click", (e) => {
       const value = e.target.dataset.value;
       currentCountry = value;
       countryToggle.textContent = e.target.textContent;
+      mobileCountryToggle.textContent = e.target.textContent;
       countryMenu.classList.add("hidden");
+      fetchNews(currentQuery, currentLang, currentCountry);
+    });
+  });
+}
+
+// Вибір країни (мобільне)
+if (mobileCountryMenu) {
+  mobileCountryMenu.querySelectorAll(".dropdown-item").forEach((item) => {
+    item.addEventListener("click", (e) => {
+      const value = e.target.dataset.value;
+      currentCountry = value;
+      countryToggle.textContent = e.target.textContent;
+      mobileCountryToggle.textContent = e.target.textContent;
+      mobileCountryMenu.classList.add("hidden");
       fetchNews(currentQuery, currentLang, currentCountry);
     });
   });
@@ -148,15 +195,18 @@ if (menuToggle) {
 async function fetchNews(query, lang, country) {
   try {
     const url = `/api/fetch-news?query=${encodeURIComponent(query)}&lang=${lang}${country !== 'Any' ? `&country=${country}` : ''}`;
-    console.log("Запит до API:", url); // Дебаг
+    console.log("Надсилаємо запит до API:", url);
     const response = await fetch(url);
-    if (!response.ok) throw new Error(`Помилка отримання даних: ${response.status}`);
+    if (!response.ok) {
+      console.error("Помилка HTTP:", response.status, response.statusText);
+      throw new Error(`Помилка отримання даних: ${response.status}`);
+    }
     const data = await response.json();
     console.log("Отримано дані:", data);
     console.log("Кількість статей:", data.articles ? data.articles.length : 0);
     bindData(data.articles || []);
   } catch (error) {
-    console.error("Помилка:", error);
+    console.error("Помилка в fetchNews:", error);
   }
 }
 

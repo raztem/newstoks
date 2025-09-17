@@ -56,9 +56,15 @@ body {
 
 /* Пошук та випадаючі меню */
 .search-container {
-    display: flex;
+    display: none;
     align-items: center;
     gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+    .search-container {
+        display: flex;
+    }
 }
 
 .search-input {
@@ -167,8 +173,43 @@ body {
     background-color: #e5e7eb;
 }
 
-.hidden {
-    display: none;
+/* Мобільні випадаючі меню */
+.mobile-dropdown {
+    width: 100%;
+}
+
+.mobile-dropdown-toggle {
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    background-color: #f3f4f6;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #1f2937;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mobile-dropdown-toggle::after {
+    content: '▼';
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.mobile-dropdown-toggle:hover {
+    background-color: #e5e7eb;
+}
+
+.mobile-dropdown .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    border: none;
+    background-color: #f9fafb;
+    margin: 0.5rem 0 0 1rem;
 }
 
 /* Мобільний гамбургер */

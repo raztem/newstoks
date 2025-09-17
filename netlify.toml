@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/api/fetch-news*"
+  to = "/.netlify/functions/fetch-news"
+  status = 200
+  force = true

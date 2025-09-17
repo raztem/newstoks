@@ -1,0 +1,333 @@
+/* Базові стилі */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9fafb;
+}
+
+/* Навігація */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    height: 4rem;
+    padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+    .nav {
+        padding: 0 2rem;
+    }
+}
+
+.logo {
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+}
+
+.desktop-menu {
+    display: none;
+    gap: 1.5rem;
+    font-weight: 500;
+    font-size: 1.125rem;
+}
+
+@media (min-width: 768px) {
+    .desktop-menu {
+        display: flex;
+    }
+}
+
+.menu-item {
+    color: inherit;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.menu-item:hover {
+    color: #2563eb;
+}
+
+/* Пошук та випадаючі меню */
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.search-input {
+    padding: 0.5rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 9999px;
+    width: 12rem;
+    transition: all 0.3s ease;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></svg>');
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 2.5rem;
+}
+
+@media (min-width: 768px) {
+    .search-input {
+        width: 16rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .search-input {
+        width: 20rem;
+    }
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+
+/* Кастомне випадаюче меню */
+.dropdown {
+    position: relative;
+    width: 8rem;
+}
+
+.dropdown-toggle {
+    padding: 0.5rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    background-color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.dropdown-toggle::after {
+    content: '▼';
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.dropdown-toggle:hover {
+    border-color: #3b82f6;
+}
+
+.dropdown-toggle:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    z-index: 20;
+    list-style: none;
+    margin: 0.25rem 0 0;
+    padding: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-menu:not(.hidden) {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    padding: 0.5rem 1rem;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-size: 0.875rem;
+    color: #374151;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dropdown-item:hover {
+    background-color: #e5e7eb;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Мобільний гамбургер */
+.mobile-toggle {
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .mobile-toggle {
+        display: none;
+    }
+}
+
+.toggle-button {
+    color: #4b5563;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.toggle-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* Мобільне меню */
+.mobile-menu {
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    padding: 1rem;
+    position: absolute;
+    top: 4rem;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mobile-menu:not(.hidden) {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (min-width: 768px) {
+    .mobile-menu {
+        display: none !important;
+    }
+}
+
+.mobile-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-weight: 500;
+    font-size: 1.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mobile-item {
+    width: 100%;
+    text-align: left;
+    color: #1f2937;
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 0.25rem;
+}
+
+.mobile-item:hover {
+    background-color: #e5e7eb;
+    color: #2563eb;
+}
+
+/* Контейнер карток */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+/* Картка */
+.card {
+    width: 100%;
+    max-width: 24rem;
+    margin: 1rem 1rem 1.5rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-img {
+    width: 100%;
+    height: 12rem;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 1rem;
+}
+
+.card-heading {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.card-meta {
+    font-size: 0.875rem;
+    color: #4b5563;
+    margin-bottom: 0.5rem;
+}
+
+.card-source {
+    font-weight: 600;
+    color: #dc2626;
+}
+
+.card-description {
+    color: #374151;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+}
+
+/* Анімація завантаження */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Футер */
+.footer {
+    margin-top: 2rem;
+    padding: 1rem 0;
+    text-align: center;
+    color: #6b7280;
+}

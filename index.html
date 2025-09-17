@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News App</title>
+    <!-- Google Fonts: Roboto для сучасного вигляду -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- CSS стилі -->
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./images/raztem.png" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Шапка -->
+    <header>
+        <!-- Навігація -->
+        <nav class="nav">
+            <!-- Логотип -->
+            <div>
+                <a href="./index.html">
+                    <img src="./images/raztem.png" alt="Logo" class="logo">
+                </a>
+            </div>
+            <!-- Посилання для десктопу -->
+            <div class="desktop-menu">
+                <button class="menu-item" id="stocks">Stocks</button>
+                <button class="menu-item" id="finance">Finance</button>
+                <button class="menu-item" id="politics">Politics</button>
+                <button class="menu-item" id="technology">Technology</button>
+            </div>
+            <!-- Пошук та вибір мови/країни -->
+            <div class="search-container">
+                <div class="dropdown">
+                    <button class="dropdown-toggle" id="languageToggle">English</button>
+                    <ul class="dropdown-menu hidden" id="languageMenu">
+                        <li><button class="dropdown-item" data-value="en">English</button></li>
+                        <li><button class="dropdown-item" data-value="uk">Ukrainian</button></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <button class="dropdown-toggle" id="countryToggle">Any</button>
+                    <ul class="dropdown-menu hidden" id="countryMenu">
+                        <li><button class="dropdown-item" data-value="Any">Any</button></li>
+                        <li><button class="dropdown-item" data-value="us">United States</button></li>
+                        <li><button class="dropdown-item" data-value="cn">China</button></li>
+                        <li><button class="dropdown-item" data-value="ua">Ukraine</button></li>
+                    </ul>
+                </div>
+                <input type="search" id="searchInput" placeholder="Пошук новин..." class="search-input">
+            </div>
+            <!-- Гамбургер для мобільного меню -->
+            <div class="mobile-toggle">
+                <button id="menuToggle" class="toggle-button">
+                    <svg class="toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Мобільне меню -->
+        <div id="mobileMenu" class="mobile-menu hidden">
+            <ul class="mobile-list">
+                <li><button class="mobile-item" id="mobileStocks">Stocks</button></li>
+                <li><button class="mobile-item" id="mobileFinance">Finance</button></li>
+                <li><button class="mobile-item" id="mobilePolitics">Politics</button></li>
+                <li><button class="mobile-item" id="mobileTechnology">Technology</button></li>
+            </ul>
+        </div>
+    </header>
+    <!-- Головний контент -->
+    <main>
+        <div id="cards-container" class="cards-container"></div>
+    </main>
+    <!-- Шаблон картки -->
+    <template id="card-template">
+        <div class="card">
+            <img src="" alt="" class="card-img" id="cardImg">
+            <div class="card-content">
+                <h1 class="card-heading" id="cardHeading"></h1>
+                <p class="card-meta">
+                    <span id="cardSource" class="card-source"></span>
+                    <span id="cardDate"></span>
+                </p>
+                <p class="card-description" id="cardDescription"></p>
+            </div>
+        </div>
+    </template>
+    <footer class="footer">© 2025 News App</footer>
+    <!-- Скрипт -->
+    <script src="./script.js"></script>
+</body>
+
+</html>

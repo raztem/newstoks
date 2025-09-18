@@ -11,19 +11,16 @@ const politics = document.querySelector("#politics");
 const technology = document.querySelector("#technology");
 const searchInput = document.querySelector("#searchInput");
 const languageToggle = document.querySelector("#languageToggle");
-const languageMenu = document.querySelector("#languageMenu");
 const countryToggle = document.querySelector("#countryToggle");
 const countryMenu = document.querySelector("#countryMenu");
-const mobileLanguageToggle = document.querySelector("#mobileLanguageToggle");
-const mobileLanguageMenu = document.querySelector("#mobileLanguageMenu");
-const mobileCountryToggle = document.querySelector("#mobileCountryToggle");
-const mobileCountryMenu = document.querySelector("#mobileCountryMenu");
 const menuToggle = document.querySelector("#menuToggle");
 const mobileMenu = document.querySelector("#mobileMenu");
 const mobileStocks = document.querySelector("#mobileStocks");
 const mobileFinance = document.querySelector("#mobileFinance");
 const mobilePolitics = document.querySelector("#mobilePolitics");
 const mobileTechnology = document.querySelector("#mobileTechnology");
+const mobileCountryToggle = document.querySelector("#mobileCountryToggle");
+const mobileCountryMenu = document.querySelector("#mobileCountryMenu");
 
 // Показ новин при завантаженні сторінки
 window.addEventListener("load", () => {
@@ -84,6 +81,15 @@ if (searchInput) {
   });
 }
 
+// Перемикач мови
+if (languageToggle) {
+  languageToggle.addEventListener("click", () => {
+    currentLang = currentLang === "en" ? "uk" : "en";
+    languageToggle.textContent = currentLang === "en" ? "En" : "Ua";
+    fetchNews(currentQuery, currentLang, currentCountry);
+  });
+}
+
 // Обробка випадаючих меню
 function toggleDropdown(menu) {
   if (!menu) {
@@ -96,55 +102,17 @@ function toggleDropdown(menu) {
 // Закриття випадаючих меню при кліку поза ними
 document.addEventListener("click", (e) => {
   if (!e.target.closest(".dropdown")) {
-    if (languageMenu) languageMenu.classList.add("hidden");
     if (countryMenu) countryMenu.classList.add("hidden");
-    if (mobileLanguageMenu) mobileLanguageMenu.classList.add("hidden");
     if (mobileCountryMenu) mobileCountryMenu.classList.add("hidden");
   }
 });
 
-// Обробники для десктопних випадаючих меню
-if (languageToggle) {
-  languageToggle.addEventListener("click", () => toggleDropdown(languageMenu));
-}
+// Обробники для випадаючих меню країн
 if (countryToggle) {
   countryToggle.addEventListener("click", () => toggleDropdown(countryMenu));
 }
-
-// Обробники для мобільних випадаючих меню
-if (mobileLanguageToggle) {
-  mobileLanguageToggle.addEventListener("click", () => toggleDropdown(mobileLanguageMenu));
-}
 if (mobileCountryToggle) {
   mobileCountryToggle.addEventListener("click", () => toggleDropdown(mobileCountryMenu));
-}
-
-// Вибір мови (десктоп)
-if (languageMenu) {
-  languageMenu.querySelectorAll(".dropdown-item").forEach((item) => {
-    item.addEventListener("click", (e) => {
-      const value = e.target.dataset.value;
-      currentLang = value;
-      languageToggle.textContent = e.target.textContent;
-      mobileLanguageToggle.textContent = e.target.textContent;
-      languageMenu.classList.add("hidden");
-      fetchNews(currentQuery, currentLang, currentCountry);
-    });
-  });
-}
-
-// Вибір мови (мобільне)
-if (mobileLanguageMenu) {
-  mobileLanguageMenu.querySelectorAll(".dropdown-item").forEach((item) => {
-    item.addEventListener("click", (e) => {
-      const value = e.target.dataset.value;
-      currentLang = value;
-      languageToggle.textContent = e.target.textContent;
-      mobileLanguageToggle.textContent = e.target.textContent;
-      mobileLanguageMenu.classList.add("hidden");
-      fetchNews(currentQuery, currentLang, currentCountry);
-    });
-  });
 }
 
 // Вибір країни (десктоп)
@@ -171,6 +139,7 @@ if (mobileCountryMenu) {
       mobileCountryToggle.textContent = e.target.textContent;
       mobileCountryMenu.classList.add("hidden");
       fetchNews(currentQuery, currentLang, currentCountry);
+      toggleMenu();
     });
   });
 }
@@ -183,6 +152,7 @@ function toggleMenu() {
   }
   console.log("Перемикання меню, поточний стан:", mobileMenu.classList.contains("hidden"));
   mobileMenu.classList.toggle("hidden");
+  menuToggle.classList.toggle("active");
 }
 
 if (menuToggle) {

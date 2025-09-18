@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="uk">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +11,6 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="./images/raztem.png" type="image/x-icon">
 </head>
-
 <body>
     <!-- Шапка -->
     <header>
@@ -24,39 +22,33 @@
                     <img src="./images/raztem.png" alt="Logo" class="logo">
                 </a>
             </div>
+            <!-- Поле пошуку -->
+            <input type="search" id="searchInput" placeholder="Пошук новин..." class="search-input">
+        
             <!-- Посилання для десктопу -->
             <div class="desktop-menu">
                 <button class="menu-item" id="stocks">Stocks</button>
                 <button class="menu-item" id="finance">Finance</button>
                 <button class="menu-item" id="politics">Politics</button>
                 <button class="menu-item" id="technology">Technology</button>
-            </div>
-            <!-- Пошук та вибір мови/країни -->
-            <div class="search-container">
                 <div class="dropdown">
-                    <button class="dropdown-toggle" id="languageToggle">English</button>
-                    <ul class="dropdown-menu hidden" id="languageMenu">
-                        <li><button class="dropdown-item" data-value="en">English</button></li>
-                        <li><button class="dropdown-item" data-value="uk">Ukrainian</button></li>
-                    </ul>
-                </div>
-                <div class="dropdown">
-                    <button class="dropdown-toggle" id="countryToggle">Any</button>
+                    <button class="dropdown-toggle" id="countryToggle">World</button>
                     <ul class="dropdown-menu hidden" id="countryMenu">
-                        <li><button class="dropdown-item" data-value="Any">Any</button></li>
-                        <li><button class="dropdown-item" data-value="us">United States</button></li>
+                        <li><button class="dropdown-item" data-value="Any">World</button></li>
+                        <li><button class="dropdown-item" data-value="us">USA</button></li>
                         <li><button class="dropdown-item" data-value="cn">China</button></li>
                         <li><button class="dropdown-item" data-value="ua">Ukraine</button></li>
                     </ul>
                 </div>
-                <input type="search" id="searchInput" placeholder="Пошук новин..." class="search-input">
             </div>
+              <!-- Перемикач мови -->
+            <button class="language-toggle" id="languageToggle">En</button>
             <!-- Гамбургер для мобільного меню -->
             <div class="mobile-toggle">
                 <button id="menuToggle" class="toggle-button">
-                    <svg class="toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
                 </button>
             </div>
         </nav>
@@ -69,19 +61,10 @@
                 <li><button class="mobile-item" id="mobileTechnology">Technology</button></li>
                 <li>
                     <div class="dropdown mobile-dropdown">
-                        <button class="dropdown-toggle mobile-dropdown-toggle" id="mobileLanguageToggle">English</button>
-                        <ul class="dropdown-menu hidden" id="mobileLanguageMenu">
-                            <li><button class="dropdown-item" data-value="en">English</button></li>
-                            <li><button class="dropdown-item" data-value="uk">Ukrainian</button></li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <div class="dropdown mobile-dropdown">
-                        <button class="dropdown-toggle mobile-dropdown-toggle" id="mobileCountryToggle">Any</button>
+                        <button class="mobile-item mobile-dropdown-toggle" id="mobileCountryToggle">World</button>
                         <ul class="dropdown-menu hidden" id="mobileCountryMenu">
-                            <li><button class="dropdown-item" data-value="Any">Any</button></li>
-                            <li><button class="dropdown-item" data-value="us">United States</button></li>
+                            <li><button class="dropdown-item" data-value="Any">World</button></li>
+                            <li><button class="dropdown-item" data-value="us">USA</button></li>
                             <li><button class="dropdown-item" data-value="cn">China</button></li>
                             <li><button class="dropdown-item" data-value="ua">Ukraine</button></li>
                         </ul>
@@ -112,5 +95,4 @@
     <!-- Скрипт -->
     <script src="./script.js"></script>
 </body>
-
 </html>

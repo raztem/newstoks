@@ -25,48 +25,27 @@ body {
 
 .logo {
     border-radius: 50%;
-    width: 3rem;
+    width: 5rem;
     height: 3rem;
 }
 
-.desktop-menu {
-    display: none;
-    gap: 1.5rem;
-    font-weight: 500;
-    font-size: 1.125rem;
-}
-
-@media (min-width: 768px) {
-    .desktop-menu {
-        display: flex;
-    }
-}
-
-.menu-item {
-    color: inherit;
+/* Перемикач мови */
+.language-toggle {
     background: none;
     border: none;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #374151;
     cursor: pointer;
+    padding: 0.5rem;
     transition: color 0.3s;
 }
 
-.menu-item:hover {
+.language-toggle:hover {
     color: #2563eb;
 }
 
-/* Пошук та випадаючі меню */
-.search-container {
-    display: none;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-@media (min-width: 768px) {
-    .search-container {
-        display: flex;
-    }
-}
-
+/* Поле пошуку */
 .search-input {
     padding: 0.5rem 1rem;
     border: 1px solid #d1d5db;
@@ -97,51 +76,58 @@ body {
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
 }
 
-/* Кастомне випадаюче меню */
+/* Десктопне меню */
+.desktop-menu {
+    display: none;
+    gap: 1.5rem;
+    font-weight: 500;
+    font-size: 1.125rem;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .desktop-menu {
+        display: flex;
+    }
+}
+
+.menu-item {
+    color: inherit;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s;
+    font-size: 0.875rem;
+}
+
+.menu-item:hover {
+    color: #2563eb;
+}
+
+/* Випадаюче меню для країн */
 .dropdown {
     position: relative;
-    width: 8rem;
 }
 
 .dropdown-toggle {
-    padding: 0.5rem 1rem;
-    border: 1px solid #d1d5db;
-    border-radius: 0.25rem;
-    background-color: white;
+    background: none;
+    border: none;
     font-size: 0.875rem;
     font-weight: 500;
-    color: #374151;
+    color: inherit;
     cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: all 0.3s ease;
-}
-
-.dropdown-toggle::after {
-    content: '▼';
-    font-size: 0.75rem;
-    color: #6b7280;
+    transition: color 0.3s;
 }
 
 .dropdown-toggle:hover {
-    border-color: #3b82f6;
-}
-
-.dropdown-toggle:focus {
-    outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+    color: #2563eb;
 }
 
 .dropdown-menu {
     position: absolute;
     top: 100%;
     left: 0;
-    right: 0;
     background-color: white;
-    border: 1px solid #d1d5db;
-    border-radius: 0.25rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     z-index: 20;
     list-style: none;
@@ -173,46 +159,7 @@ body {
     background-color: #e5e7eb;
 }
 
-/* Мобільні випадаючі меню */
-.mobile-dropdown {
-    width: 100%;
-}
-
-.mobile-dropdown-toggle {
-    width: 100%;
-    text-align: left;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    background-color: #f3f4f6;
-    border: none;
-    font-size: 1rem;
-    font-weight: 500;
-    color: #1f2937;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.mobile-dropdown-toggle::after {
-    content: '▼';
-    font-size: 0.75rem;
-    color: #6b7280;
-}
-
-.mobile-dropdown-toggle:hover {
-    background-color: #e5e7eb;
-}
-
-.mobile-dropdown .dropdown-menu {
-    position: static;
-    box-shadow: none;
-    border: none;
-    background-color: #f9fafb;
-    margin: 0.5rem 0 0 1rem;
-}
-
-/* Мобільний гамбургер */
+/* Анімована кнопка бургер-меню */
 .mobile-toggle {
     display: block;
 }
@@ -224,35 +171,54 @@ body {
 }
 
 .toggle-button {
-    color: #4b5563;
     background: none;
     border: none;
     cursor: pointer;
+    width: 1.2rem;
+    height: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
 }
 
-.toggle-icon {
+.bar {
     width: 1.5rem;
-    height: 1.5rem;
+    height: 0.2rem;
+    background-color: #4b5563;
+    transition: all 0.3s ease;
+}
+
+.toggle-button.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.toggle-button.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.toggle-button.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
 }
 
 /* Мобільне меню */
 .mobile-menu {
     background-color: white;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    padding: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     position: absolute;
     top: 4rem;
-    left: 0;
     right: 0;
+    width: 75%;
+    max-width: 20rem;
     z-index: 10;
-    transform: translateY(-10px);
+    transform: translateX(100%);
     opacity: 0;
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .mobile-menu:not(.hidden) {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
 }
 
 @media (min-width: 768px) {
@@ -269,7 +235,7 @@ body {
     font-size: 1.25rem;
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 1rem;
 }
 
 .mobile-item {
@@ -281,12 +247,26 @@ body {
     padding: 0.5rem 1rem;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
-    border-radius: 0.25rem;
 }
 
 .mobile-item:hover {
     background-color: #e5e7eb;
     color: #2563eb;
+}
+
+.mobile-dropdown .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    background-color: #f9fafb;
+    margin: 0.5rem 0 0 1rem;
+}
+
+.mobile-dropdown-toggle {
+    background: none;
+    border: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #1f2937;
 }
 
 /* Контейнер карток */
@@ -304,7 +284,7 @@ body {
     margin: 1rem 1rem 1.5rem;
     background-color: white;
     border-radius: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: all 0.3s;
 }
